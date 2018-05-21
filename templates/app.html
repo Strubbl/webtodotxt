@@ -145,7 +145,7 @@
         Vue.config.silent = {{ 'false' if config['DEBUG'] else 'true' }};
         Vue.config.productionTip = false;
 
-        ROOT_URL = '{{ request.url_root }}';
+        ROOT_URL = '{{ force_root_url if force_root_url else request.url_root }}';
 
         moment.locale('{{ g.CURRENT_LOCALE }}');
 

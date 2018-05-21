@@ -3,14 +3,16 @@ from flask_babel import get_locale, _
 from webtodotxt import app, auth
 from helpers import *
 import todotxtio
+import os
 
 
 @app.route('/')
 @auth.login_required
 def home():
     locale = get_locale()
+    FORCE_ROOT_URL = os.getenv('WEBTODOTXT_FORCE_ROOT_URL', None)
 
-    return render_template('app.html', first_week_day=locale.first_week_day + 1)
+    return render_template('app.html', first_week_day=locale.first_week_day + 1, force_root_url=FORCE_ROOT_URL)
 
 
 @app.route('/todo.txt', methods=['GET', 'POST'])
