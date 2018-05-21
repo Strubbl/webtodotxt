@@ -3,13 +3,15 @@ from flask_httpauth import HTTPBasicAuth
 from flask_babel import Babel
 from flask import Flask
 import logging
+import os
 
 
 # -----------------------------------------------------------
 # Boot
 
+STATIC_URL_PATH = os.getenv('WEBTODOTXT_STATIC_URL_PATH', '')
 
-app = Flask(__name__, static_url_path='')
+app = Flask(__name__, static_url_path=STATIC_URL_PATH)
 app.config.from_pyfile('config.py')
 
 if not app.config['TITLE']:
